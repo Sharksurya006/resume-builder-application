@@ -56,9 +56,11 @@ export const loginUser = async(req,res)=>{
 		  }
           //check if password is correct or not
 
-		  if(!user.comparePassword(password)){
-			return res.status(400).json({message:"Invalid Email or password"})
-		  }
+		  const isMatch = user.comparePassword(password);
+			if(!isMatch){
+  			return res.status(401).json({message:"Invalid email or password"});
+			}
+
 
 		  // return success message
 

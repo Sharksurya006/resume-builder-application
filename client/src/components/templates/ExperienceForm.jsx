@@ -44,7 +44,7 @@ const ExperienceForm = ({ data, onChange }) => {
                 Authorization : token
               }
              })
-             updateExperience(index, "description",data.enhancedContent)
+             updateExperience(index, "description",data.enhanceContent)
           }catch(error){
              toast.error(error.message)
           }

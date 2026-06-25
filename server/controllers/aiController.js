@@ -89,41 +89,34 @@ export const uploadResume = async (req, res) => {
 
 		const systemPrompt = "you are expert AI Agent to extract data from resume."
 
-		const userPrompt = `extract data from this resume: ${resumeText} 
-		Provide data in the following JSON format with no additional text before or after:
-		{
-		personal_info : {
-		image : {type: String, default : ''},
-		full_name : {type : String,default : ''},
-		profession : {type : String,default : ''},
-		email : {type : String,default : ''},
-		phone : {type : String,default : ''},
-		location : {type : String,default : ''},
-		linkedin : {type : String,default : ''},
-		website : {type : String,default : ''}
-	},
-	experience : [{
-		company : {type:String},
-	    position : {type:String},
-		start_date : {type:String},
-		end_date : {type:String},
-		description : {type:String},
-		is_current : {type:Boolean}
-	}],
-	projects:[{
-		name : {type:String},
-	    type : {type:String},
-		description : {type:String}
-	}],
-	education : [{
-	    institution : {type:String},
-	    degree : {type:String},
-		field : {type:String},
-		graduation_date : {type:String},
-		gpa : {type:String}
-	}],
-		}
-		`
+		const userPrompt = `Extract structured data from this resume text and return ONLY valid JSON.
+
+Resume text:
+${resumeText}
+
+Return this exact JSON structure with extracted values (empty string if not found):
+{
+  "personal_info": {
+    "full_name": "",
+    "profession": "",
+    "email": "",
+    "phone": "",
+    "location": "",
+    "linkedin": "",
+    "website": ""
+  },
+  "professional_summary": "",
+  "experience": [
+    { "company": "", "position": "", "start_date": "", "end_date": "", "description": "", "is_current": false }
+  ],
+  "projects": [
+    { "name": "", "type": "", "description": "" }
+  ],
+  "education": [
+    { "institution": "", "degree": "", "field": "", "graduation_date": "", "gpa": "" }
+  ],
+  "skills": []
+}`
 
 		const response = await ai.chat.completions.create({
 			model: process.env.OPENAI_MODEL,
@@ -140,9 +133,9 @@ export const uploadResume = async (req, res) => {
 			response_format: { type: 'json_object' }
 		})
 
-		const enhancedData = response.choices[0].message.content;
+		const enhanceData = response.choices[0].message.content;
 
-		const parsedData = JSON.parse(enhancedData)
+		const parsedData = JSON.parse(enhanceData)
 		const newResume = await Resume.create({ userId, title, ...parsedData })
 
 		return res.json({ resumeId: newResume._id })

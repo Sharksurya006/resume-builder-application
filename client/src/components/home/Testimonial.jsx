@@ -6,13 +6,13 @@ const Testimonial = () => {
 	 const cardsData = [
         {
             image: 'https://images.unsplash.com/photo-1633332755192-727a05c4013d?q=80&w=200',
-            name: 'Briar Martin',
-            handle: '@neilstellar',
+            name: 'Sivakumar S',
+            handle: '@Sivakumar',
             date: 'April 20, 2025'
         },
         {
             image: 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?q=80&w=200',
-            name: 'Avery Johnson',
+            name: 'Kavya R',
             handle: '@averywrites',
             date: 'May 10, 2025'
         },

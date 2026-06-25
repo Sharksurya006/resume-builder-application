@@ -99,30 +99,34 @@ export const updateResume = async (req, res) => {
 
 
 		let resumeDataCopy;
-		if(typeof resumeData === 'string'){
+		if (typeof resumeData === 'string') {
 			resumeDataCopy = await JSON.parse(resumeData)
 		}
-		else{
+		else {
 			resumeDataCopy = structuredClone(resumeData)
 		}
 
 		if (image) {
 
-            const imageBufferData = fs.createReadStream(image.path)
+			const imageBufferData = fs.createReadStream(image.path)
 
 			const response = await imagekit.files.upload({
 				file: imageBufferData,
 				fileName: 'resume.png',
-				folder :'user-resumes',
-				tranformation : {
-					pre : 'w-300,h-300,fo-face,z-0.75' + ( removeBackground ? ',e-bgremove' : '')
+				folder: 'user-resumes',
+				tranformation: {
+					pre: 'w-300,h-300,fo-face,z-0.75' + (removeBackground ? ',e-bgremove' : '')
 				}
 			});
 
 			resumeDataCopy.personal_info.image = response.url
 		}
 
-		const resume = await Resume.findByIdAndUpdate({ userId, _id: resumeId }, resumeDataCopy, { new: true })
+		const resume = await Resume.findOneAndUpdate(
+			{ _id: resumeId, userId },  
+			resumeDataCopy,
+			{ new: true }
+		)
 
 		return res.status(200).json({ message: 'Save Successfully', resume })
 
