@@ -148,7 +148,7 @@ const ResumeBuilder = () => {
 						<div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 pt-1">
 							{/* progress bar using activeSectionIndex */}
 							<hr className="absolute top-0 left-0 right-0 border-2 border-gray-200" />
-							<hr className="absolute top-0 left-0 h-1 bg-gradient-to-r from--500 to-green-600 border-nown transition-all duration-2000"
+							<hr className="absolute top-0 left-0 h-1 bg-gradient-to-r from-blue-500 to-green-600 border-nown transition-all duration-2000"
 								style={{ width: `${(activeSectionIndex * 100) / (sections.length - 1)}%` }} />
 							{/*section navigation*/}
 							<div className="flex justify-between items-center mb-6 border-b border-gray-300 py-1">
@@ -183,7 +183,7 @@ const ResumeBuilder = () => {
 								{
 									activeSection.id === 'summary' && (
 										<ProfessionSummaryForm data={resumeData.professional_summary} onChange={(value) => setResumeData(prev => ({ ...prev, professional_summary: value }))}
-										/>
+										setResumeData={setResumeData} />
 									)
 								}
 								{

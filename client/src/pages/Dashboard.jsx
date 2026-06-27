@@ -9,7 +9,7 @@ import pdfToText from 'react-pdftotext'
 const Dashboard = () => {
 
     const {user, token} = useSelector(state => state.auth)
-
+    
 	const colors = ['#9333ea', '#d97706', '#dc2626', '#0284c7', '#16a34a']
 	const [allResumes, setAllResumes] = useState([])
 	const [showCreateResume, setShowCreateResume] = useState(false)
@@ -104,7 +104,7 @@ const Dashboard = () => {
 	return (
 		<div>
 			<div className="max-w-7xl mx-auto px-4 py-8">
-				<p className="text-2xl font-medium mb-6 bg-gradient-to-r from-slate-600 to-slate-700 bg-clip-text text-transparent sm:hidden">welcome, joe doe</p>
+				<p className="text-2xl font-medium mb-6 bg-gradient-to-r from-slate-600 to-slate-700 bg-clip-text text-transparent sm:hidden">welcome,{user?.name}</p>
 				<div className="flex gap-4">
 					<button onClick={() => setShowCreateResume(true)} className="w-full bg-white sm:max-w-36 h-48 flex flex-col items-center justify-center rounded-lg gap-2 text-slate-600 border border-dashed border-slate-300 group hover:border-indigo-500 hover:shadow-lg transition-all duration-300 cursor-pointer">
 						<PlusIcon className="size-11 transition-all duration-400 p-2.5 bg-gradient-to-br from-indigo-300 to-indigo-500 text-white rounded-full" />
@@ -131,7 +131,7 @@ const Dashboard = () => {
 							}} />
 
 							<p className="text-sm group-hover:scale-105 transition-all px-2 text-center" style={{ color: baseColor }}>{resume.title}</p>
-							<p className='absolute bottom-1 text-[11px] text-slate-400 group-hover:text-slate-500 transition-all duration-300 px-2 text-center' style={{ color: baseColor + '90' }}>Updated on {new Date(resume.updateAt).toLocaleDateString()}</p>
+							<p className='absolute bottom-1 text-[11px] text-slate-400 group-hover:text-slate-500 transition-all duration-300 px-2 text-center' style={{ color: baseColor + '90' }}>Updated on {new Date(resume.updatedAt).toLocaleDateString()}</p>
 							<div onClick={(e)=>e.stopPropagation()}className='absolute top-1 right-1 group-hover:flex items-center hidden'>
 								<TrashIcon onClick={()=>deleteResume(resume._id)}className="size-7 p-1.5 hover:bg-white/50 rounded text-slate-700 transition-colors" />
 								<PencilIcon onClick={()=>{setEditResumeId(resume._id)
