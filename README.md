@@ -477,7 +477,7 @@ For the frontend, update `VITE_BASE_URL` in your deployment environment to point
 **Surya S**
 
 - 🌐 Portfolio: [surya-portfolio-iota.vercel.app](https://surya-portfolio-iota.vercel.app)
-- 💼 LinkedIn: [linkedin.com/in/Surya-S](https://linkedin.com/in/Surya-S)
+- 💼 LinkedIn: [linkedin.com/in/Surya-S](https://www.linkedin.com/in/surya-s-0a9121268)
 - 🐙 GitHub: [@Sharksurya006](https://github.com/Sharksurya006)
 - 📧 Email: suryas632003@gmail.com
 
