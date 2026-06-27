@@ -2,6 +2,7 @@ import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom'
 import { logout } from '../app/features/authSlice'
+import logo from "../assets/logo.png"
 
 const Navbar = () => {
 	const { user } = useSelector(state => state.auth)
@@ -15,8 +16,8 @@ const Navbar = () => {
 	return (
 		<div className="shadow bg-white">
 			<nav className="flex items-center justify-between max-w-7xl mx-auto px-4 py-3.5 text-scale-800 transition-all">
-				<Link>
-					<img src="/logo.svg" alt="logo" className="h-11 w-auto" />
+				<Link to="/">
+					<img src={logo} alt="logo" className="h-11 w-auto" />
 				</Link>
 				<div className="flex items-center gap-4 text-sm">
 					<p className="max-sm:hidden">Hi, {user?.name}</p>
